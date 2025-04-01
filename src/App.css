@@ -1,0 +1,8 @@
+.note-custom-html h1{
+    font-size: 20px;
+}
+
+.note-custom-html ul{
+    list-style: circle;
+    font-size: 20px;
+}
