@@ -33,7 +33,7 @@ function App() {
         {/* Login page route */}
         {window.location.pathname === "/" && (
           <div className="w-full">
-            <div className="px-7 py-5">
+            <div className="px-7">
               <Routes>
                 <Route path="/" element={<Login />} />
               </Routes>

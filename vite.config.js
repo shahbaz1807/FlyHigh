@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Fly High',
-        short_name: 'Fly High',
+        name: 'FlyHigh',
+        short_name: 'FlyHigh',
         description: 'Track your personal growth and progress',
         theme_color: '#4FD1C5',
         icons: [
