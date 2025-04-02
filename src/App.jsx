@@ -8,6 +8,7 @@ import Notes from "./pages/Notes";
 import Routine from "./pages/Routine";
 import Todo from "./pages/Todo";
 import Login from "./pages/Login";
+import BottomBar from "./components/bottomBar/BottomBar";
 function App() {
   const location = useLocation();
   return (
@@ -27,6 +28,7 @@ function App() {
                   <Route path="/todo" element={<Todo />} />
                 </Routes>
               </div>
+              <BottomBar/>
             </div>
           </>
         )}

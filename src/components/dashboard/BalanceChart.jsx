@@ -48,23 +48,20 @@ const BalanceChart = () => {
   ];
 
   return (
-    <div className="h-auto rounded-2xl border border-[#bdbdbd31] bg-[#2e2e2e] px-7 py-7">
+    <div className="h-auto rounded-2xl border border-[#bdbdbd31] bg-[#2e2e2e] px-4 sm:px-7 py-5 sm:py-7">
       <div className="mb-9">
-        <h1 className="font-worksans text-4xl text-primary">Total Balance</h1>
-        <p className="text-zinc-500 mt-2">
-          Lorem ipsum, dolor sit amet consectetur adipisicing.
+        <h1 className="font-worksans text-3xl text-primary sm:text-4xl">
+          Total Balance
+        </h1>
+        <p className="mt-2 text-sm text-zinc-500 sm:text-base">
+          Your financial balance updated based on income, expenses, and savings.
         </p>
       </div>
-      <div className="h-[400px]">
+      <div className="h-[250px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 20,
-            }}
+            margin={{ top: 20, right: 30, left: 0, bottom: 20 }} // Left margin removed
           >
             <CartesianGrid
               strokeDasharray="3 3"
@@ -82,7 +79,7 @@ const BalanceChart = () => {
               axisLine={false}
               tickLine={false}
               tickFormatter={(value) => `$${value}`}
-              domain={[0, "dataMax + 1000"]}
+              domain={["auto", "auto"]} // Automatically adjusts Y-axis range
             />
             <Tooltip
               content={<CustomTooltip />}

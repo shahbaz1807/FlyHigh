@@ -35,10 +35,11 @@ const Sidebar = () => {
   ];
 
   return (
+    <>
     <div
       className={` ${
         open ? "w-[330px]" : "w-24"
-      } min-h-screen bg-[#101010] text-[#4FD1C5] shadow shadow-[#bbbbbb21] duration-300`}
+      } min-h-screen bg-[#101010] text-[#4FD1C5] shadow hidden md:block shadow-[#bbbbbb21] duration-300`}
     >
       <div className="relative h-[95vh] w-full p-5 pt-8">
         <FaAngleRight
@@ -49,6 +50,7 @@ const Sidebar = () => {
         />
 
         {/* Logo Section */}
+        <Link to={'/'}>
         <div className="flex items-center gap-x-4">
           <img
             src="/logo.png"
@@ -63,6 +65,7 @@ const Sidebar = () => {
             FlyHigh
           </h1>
         </div>
+        </Link>
 
         {/* Sidebar Menu */}
         <div className="mt-9">
@@ -114,6 +117,7 @@ const Sidebar = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

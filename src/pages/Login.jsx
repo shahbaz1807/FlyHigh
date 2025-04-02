@@ -13,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 const Login = () => {
   const [data, setData] = useState({ identify: "", password: "" });
   const [showPass, setShowPass] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(true);
   const [accessDenied, setAccessDenied] = useState(false);
   const passInp = useRef(null);
 
@@ -50,6 +50,8 @@ const Login = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setLoginSuccess(true);
+    }else{
+      setLoginSuccess(false);
     }
   }, []);
 
