@@ -18,7 +18,7 @@ const DistributionChart = () => {
     },
     dataLabels: {
       style: {
-        fontSize: "18px",
+        fontSize: "15px",
         fontFamily: "Work Sans",
         fontWeight: "500",
       },
@@ -43,7 +43,8 @@ const DistributionChart = () => {
         breakpoint: 480,
         options: {
           chart: {
-            width: "100%", // Ensure full width on smaller screens
+            width: "280px", // Set the chart width for small screens
+            margin: "auto", // Center the chart horizontally
           },
           legend: {
             position: "bottom",
@@ -60,18 +61,18 @@ const DistributionChart = () => {
   const series = [1450, 1550, 900, 1900];
 
   return (
-    <div className="h-auto  rounded-2xl border border-[#bdbdbd31] bg-[#2e2e2e] px-4 py-5 sm:px-7 sm:py-7">
+    <div className="h-auto max-w-full rounded-2xl border border-[#bdbdbd31] bg-[#2e2e2e] px-4 py-5 sm:px-7 sm:py-7">
       <div className="mb-9">
-        <h1 className="font-worksans text-3xl text-primary sm:text-4xl">
+        <h1 className="font-worksans text-2xl text-primary sm:text-4xl">
           Balance Distribute
         </h1>
-        <p className="mt-2 text-sm text-zinc-500 sm:text-base">
+        <p className="mt-1 text-sm text-zinc-500 sm:text-base">
           Quick overview of balance distribution for better financial
           management.
         </p>
       </div>
-      <div className="w-full">
-        <Chart options={options} series={series} type="pie" />
+      <div className="flex w-full justify-center">
+        <Chart options={options} series={series} type="pie" height={300} />
       </div>
     </div>
   );

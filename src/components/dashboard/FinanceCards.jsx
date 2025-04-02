@@ -9,9 +9,9 @@ const FinanceCards = () => {
           <h4 className="fw-bolder font-worksans text-base sm:text-xl text-white mt-2">
             Networth
           </h4>
-          <div className="flex items-end gap-3 md:gap-5 text-left">
-            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[33px] text-primary">35M</h1>
-            <h4 className="fw-bolder font-k2d text-base md:text-lg text-green-400 mb-2 md:mb-0">+50%</h4>
+          <div className="flex items-end gap-2 md:gap-5 text-left">
+            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[30px] text-primary -mt-1">35M</h1>
+            <h4 className="fw-bolder font-k2d text-sm md:text-lg text-green-400 mb-[6px] md:mb-0">+50%</h4>
           </div>
         </div>
         <div className="flex sm:h-12 sm:w-12 w-9 h-9 cursor-pointer items-center justify-center rounded-md bg-zinc-600 px-[6px] py-[6px] text-white">
@@ -23,9 +23,9 @@ const FinanceCards = () => {
           <h4 className="fw-bolder font-worksans text-base sm:text-xl text-white mt-2">
             Networth
           </h4>
-          <div className="flex items-end gap-3 md:gap-5 text-left">
-            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[33px] text-primary">35M</h1>
-            <h4 className="fw-bolder font-k2d text-base md:text-lg text-green-400 mb-2 md:mb-0">+50%</h4>
+          <div className="flex items-end gap-2 md:gap-5 text-left">
+            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[30px] text-primary -mt-1">35M</h1>
+            <h4 className="fw-bolder font-k2d text-sm md:text-lg text-green-400 mb-[6px] md:mb-0">+50%</h4>
           </div>
         </div>
         <div className="flex sm:h-12 sm:w-12 w-9 h-9 cursor-pointer items-center justify-center rounded-md bg-zinc-600 px-[6px] py-[6px] text-white">
@@ -37,9 +37,9 @@ const FinanceCards = () => {
           <h4 className="fw-bolder font-worksans text-base sm:text-xl text-white mt-2">
             Networth
           </h4>
-          <div className="flex items-end gap-3 md:gap-5 text-left">
-            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[33px] text-primary">35M</h1>
-            <h4 className="fw-bolder font-k2d text-base md:text-lg text-green-400 mb-2 md:mb-0">+50%</h4>
+          <div className="flex items-end gap-2 md:gap-5 text-left">
+            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[30px] text-primary -mt-1">35M</h1>
+            <h4 className="fw-bolder font-k2d text-sm md:text-lg text-green-400 mb-[6px] md:mb-0">+50%</h4>
           </div>
         </div>
         <div className="flex sm:h-12 sm:w-12 w-9 h-9 cursor-pointer items-center justify-center rounded-md bg-zinc-600 px-[6px] py-[6px] text-white">
@@ -51,9 +51,9 @@ const FinanceCards = () => {
           <h4 className="fw-bolder font-worksans text-base sm:text-xl text-white mt-2">
             Networth
           </h4>
-          <div className="flex items-end gap-3 md:gap-5 text-left">
-            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[33px] text-primary">35M</h1>
-            <h4 className="fw-bolder font-k2d text-base md:text-lg text-green-400 mb-2 md:mb-0">+50%</h4>
+          <div className="flex items-end gap-2 md:gap-5 text-left">
+            <h1 className="md:mt-[5px] font-k2d sm:text-5xl text-[30px] text-primary -mt-1">35M</h1>
+            <h4 className="fw-bolder font-k2d text-sm md:text-lg text-green-400 mb-[6px] md:mb-0">+50%</h4>
           </div>
         </div>
         <div className="flex sm:h-12 sm:w-12 w-9 h-9 cursor-pointer items-center justify-center rounded-md bg-zinc-600 px-[6px] py-[6px] text-white">

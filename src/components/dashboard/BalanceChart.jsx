@@ -50,10 +50,10 @@ const BalanceChart = () => {
   return (
     <div className="h-auto rounded-2xl border border-[#bdbdbd31] bg-[#2e2e2e] px-4 sm:px-7 py-5 sm:py-7">
       <div className="mb-9">
-        <h1 className="font-worksans text-3xl text-primary sm:text-4xl">
+        <h1 className="font-worksans text-2xl text-primary sm:text-4xl">
           Total Balance
         </h1>
-        <p className="mt-2 text-sm text-zinc-500 sm:text-base">
+        <p className="mt-1 text-sm text-zinc-500 sm:text-base">
           Your financial balance updated based on income, expenses, and savings.
         </p>
       </div>

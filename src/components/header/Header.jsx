@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { SlOptionsVertical } from "react-icons/sl";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const genres = [
   "Adventure",
@@ -14,6 +14,8 @@ const genres = [
 ];
 
 const Header = () => {
+    const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const dropdownRef = useRef(null);
@@ -21,6 +23,19 @@ const Header = () => {
   const closeDropdown = () => {
     setIsOpen(false);
   };
+
+const handleLogout = () => {
+  // Remove token and user ID from localStorage
+  localStorage.removeItem("token");
+  localStorage.removeItem("uid");
+
+  // Redirect to login page
+  navigate("/login"); // Or navigate to home '/'
+
+  // Block back navigation
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = () => window.history.go(1); // Disable back navigation
+};
 
   // Click outside to close
   useEffect(() => {
@@ -81,7 +96,7 @@ const Header = () => {
           />
         </div>
         <div className="">
-          <h4 className="font-k2d text-base sm:text-lg">Shahbaz Ansari</h4>
+          <h4 className="font-k2d text-base sm:text-lg">Shahbaz</h4>
         </div>
       </div>
 
@@ -133,7 +148,7 @@ const Header = () => {
           </div>
           <div className="px-2 py-2">
             <button
-              // onClick={onLogout}
+              onClick={handleLogout}
               className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-[#4fd1c5] transition-colors bg-[#4fd1c5]/10 focus:outline-none focus:ring-2 focus:ring-[#4fd1c5]/20 active:bg-[#4fd1c5]/20"
             >
               <FiLogOut className="h-4 w-4" />
