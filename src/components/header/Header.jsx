@@ -29,12 +29,10 @@ const handleLogout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("uid");
 
-  // Redirect to login page
-  navigate("/login"); // Or navigate to home '/'
+  navigate("/");
 
-  // Block back navigation
   window.history.pushState(null, "", window.location.href);
-  window.onpopstate = () => window.history.go(1); // Disable back navigation
+  window.onpopstate = () => window.history.go(1); 
 };
 
   // Click outside to close
