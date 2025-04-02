@@ -30,7 +30,7 @@ const Login = () => {
   }
 
     axios
-      .post("http://localhost:3000/api/auth/login", data)
+      .post("https://fly-high-backend.vercel.app/api/auth/login", data)
       .then((res) => {
         toast.success(res.data.message);
         localStorage.setItem("token", res.data.token);
@@ -131,7 +131,7 @@ const Login = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary transition-all duration-300 group-hover:opacity-0"></div>
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary to-primary/80 opacity-0 transition-all duration-300 group-hover:opacity-100"></div>
                     <div className="relative flex items-center justify-center gap-2 rounded-lg bg-slate-900/50 px-3 py-2 backdrop-blur-sm transition-all duration-300 group-hover:bg-slate-800/30 sm:rounded-xl sm:px-5 sm:py-3">
-                      Login
+                      Go To Dashboard
                     </div>
                   </button>
                 </Link>

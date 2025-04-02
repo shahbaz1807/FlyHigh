@@ -3,17 +3,18 @@ import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Header from "./components/header/Header";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Notes from "./pages/Notes";
 import Routine from "./pages/Routine";
 import Todo from "./pages/Todo";
 import Login from "./pages/Login";
 function App() {
+  const location = useLocation();
   return (
     <>
       <div className="flex">
         {/* Conditionally render Sidebar and Header based on the current route */}
-        {window.location.pathname !== "/" && (
+        {location.pathname !== "/" && (
           <>
             <Sidebar />
             <div className="w-full">
@@ -31,7 +32,7 @@ function App() {
         )}
 
         {/* Login page route */}
-        {window.location.pathname === "/" && (
+        {location.pathname === "/" && (
           <div className="w-full">
             <div className="px-7">
               <Routes>
