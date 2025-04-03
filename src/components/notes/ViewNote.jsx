@@ -14,16 +14,18 @@ const ViewNote = ({
   setEditPopup,
   setEditData,
 }) => {
+  // User Token
+  const token = localStorage.getItem("token");
+  
   const [deletePopup, setdeletePopup] = useState(false);
 
   const headers = {
-    authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTEwZDdiYmNiM2I2NWM2MmYzM2QzNiIsImVtYWlsIjoic2hhaGJhemFuc2FyaTgxOTlAZ21haWwuY29tIiwidXNlcm5hbWUiOiJTaGFoYmF6X0NvZGVyIiwiaWF0IjoxNzQyOTgxMTY2LCJleHAiOjE3NDM1ODU5NjZ9.K74NBmMFM64SrXOEgPwdHVUFWwMcm4lAXA3mWfPXAJ8",
+    authorization: `Bearer ${token}`,
   };
 
   const deleteNote = async () => {
     axios
-      .delete(`http://localhost:3000/api/notes/delete-note/${noteView._id}`, {
+      .delete(`https://fly-high-backend.vercel.app/api/notes/delete-note/${noteView._id}`, {
         headers,
       })
       .then((res) => {

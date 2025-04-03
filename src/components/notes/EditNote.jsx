@@ -6,14 +6,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const EditNote = ({ setEditPopup, getData, editData, setViewNote }) => {
+  const token = localStorage.getItem("token");
   const [quillInstance, setQuillInstance] = useState(null);
   const editorRef = useRef(null);
 
   const navigate = useNavigate();
 
   const headers = {
-    authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTEwZDdiYmNiM2I2NWM2MmYzM2QzNiIsImVtYWlsIjoic2hhaGJhemFuc2FyaTgxOTlAZ21haWwuY29tIiwidXNlcm5hbWUiOiJTaGFoYmF6X0NvZGVyIiwiaWF0IjoxNzQyOTgxMTY2LCJleHAiOjE3NDM1ODU5NjZ9.K74NBmMFM64SrXOEgPwdHVUFWwMcm4lAXA3mWfPXAJ8",
+    authorization: `Bearer ${token}`,
   };
 
   const [data, setData] = useState({
@@ -29,7 +29,7 @@ const EditNote = ({ setEditPopup, getData, editData, setViewNote }) => {
     }
 
     axios
-      .post("http://localhost:3000/api/notes/add-note", data, { headers })
+      .post("https://fly-high-backend.vercel.app/api/notes/add-note", data, { headers })
       .then((res) => {
         toast.success(res.data.message);
 
@@ -69,7 +69,7 @@ const EditNote = ({ setEditPopup, getData, editData, setViewNote }) => {
   const updateNote = async () => {
     axios
       .put(
-        `http://localhost:3000/api/notes/update-note/${editData._id}`,
+        `https://fly-high-backend.vercel.app/api/notes/update-note/${editData._id}`,
         data,
         { headers },
       )

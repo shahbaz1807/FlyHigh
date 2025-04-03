@@ -6,15 +6,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddNote = ({ setAddNote, getData }) => {
+  // User Token
+  const token = localStorage.getItem("token");
+
   const [quillInstance, setQuillInstance] = useState(null);
   const editorRef = useRef(null);
 
   const navigate = useNavigate();
 
-  const headers = {
-    authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTEwZDdiYmNiM2I2NWM2MmYzM2QzNiIsImVtYWlsIjoic2hhaGJhemFuc2FyaTgxOTlAZ21haWwuY29tIiwidXNlcm5hbWUiOiJTaGFoYmF6X0NvZGVyIiwiaWF0IjoxNzQyOTgxMTY2LCJleHAiOjE3NDM1ODU5NjZ9.K74NBmMFM64SrXOEgPwdHVUFWwMcm4lAXA3mWfPXAJ8",
-  };
+const headers = {
+  authorization: `Bearer ${token}`,
+};
+
 
   const [data, setData] = useState({
     title: "",
@@ -29,7 +32,7 @@ const AddNote = ({ setAddNote, getData }) => {
     }
 
     axios
-      .post("http://localhost:3000/api/notes/add-note", data, { headers })
+      .post("https://fly-high-backend.vercel.app/api/notes/add-note", data, { headers })
       .then((res) => {
         toast.success(res.data.message);
 
@@ -44,7 +47,7 @@ const AddNote = ({ setAddNote, getData }) => {
         if (quillInstance) {
           quillInstance.root.innerHTML = ""; // Clear editor
         }
-          getData()
+        getData();
         setAddNote(false);
       })
       .catch((err) => {
@@ -136,25 +139,30 @@ const AddNote = ({ setAddNote, getData }) => {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1f1f1f1a] backdrop-blur-sm">
-      <div className="min-h-[70vh] w-[80%] max-w-[800px] rounded-xl bg-[#1b1b1b] border border-gray-700 p-4 px-5 py-5">
-        <h1 className="font-worksans text-4xl font-medium text-primary">
-          Write a new note
-        </h1>
-        <p className="text-zinc-400">
-          Title will be taken from the first H1/H2 header or first few words.
-        </p>
-        <div
-          className={`mt-2 h-[500px] overflow-hidden rounded-md border-none pb-[44px] text-zinc-900 ${data.background}`}
-        >
-          <div ref={editorRef} className="h-full w-full p-2" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#1f1f1f1a] py-4 backdrop-blur-sm">
+      <div className="flex h-auto max-h-[90vh] translate-y-[-30px] w-[95%] max-w-[800px] flex-col rounded-xl border border-gray-700 bg-[#1b1b1b] p-4 px-5 py-5 sm:w-[80%]">
+        <div className="flex-shrink-0">
+          <h1 className="font-worksans text-3xl font-medium text-primary sm:text-4xl">
+            Write a new note
+          </h1>
+          <p className="text-sm text-zinc-400">
+            Title will be taken from the first H1/H2 header or first few words.
+          </p>
         </div>
 
-        <div className="mt-9">
-          <h1 className="font-worksans text-2xl font-medium text-primary">
+        <div className="mt-2 min-h-[200px] flex-grow overflow-y-auto">
+          <div
+            className={`h-full overflow-hidden rounded-md border-none pb-[44px] text-zinc-900 ${data.background}`}
+          >
+            <div ref={editorRef} className="h-full w-full p-2" />
+          </div>
+        </div>
+
+        <div className="mt-4 flex-shrink-0">
+          <h1 className="font-worksans text-xl font-medium text-primary sm:text-2xl">
             Select Background
           </h1>
-          <div className="mt-5 grid grid-cols-8 gap-4">
+          <div className="mt-5 grid grid-cols-5 gap-4 sm:grid-cols-8">
             {gradients.map((gradient, index) => (
               <div
                 key={index}
@@ -162,23 +170,27 @@ const AddNote = ({ setAddNote, getData }) => {
                   handleClick(`bg-gradient-to-br ${gradient.class}`)
                 }
                 style={{ boxShadow: "0px 0px 5px rgba(255, 255, 255 , 0.2)" }}
-                className={`h-[60px] w-[60px] cursor-pointer rounded-md bg-gradient-to-br ${gradient.class}`}
+                className={`h-[40px] w-[40px] cursor-pointer rounded-md bg-gradient-to-br sm:h-[60px] sm:w-[60px] ${gradient.class}`}
               ></div>
             ))}
           </div>
         </div>
-        <div className="mt-8 flex gap-3">
-          <button className="rounded-md bg-primary px-5 py-2" onClick={addNote}>
+
+        <div className="mt-4 flex flex-shrink-0 flex-row gap-3">
+          <button
+            className="rounded-md bg-primary px-4 py-[6px] text-sm sm:px-5 sm:py-2"
+            onClick={addNote}
+          >
             Save
           </button>
           <button
-            className="rounded-md border-2 border-primary px-5 py-2 text-primary transition-all duration-150 hover:bg-primary hover:text-white"
+            className="rounded-md border-2 border-primary px-4 py-[6px] text-sm text-primary transition-all duration-150 hover:bg-primary hover:text-white sm:px-5 sm:py-2"
             onClick={downloadNote}
           >
             Download
           </button>
           <button
-            className="rounded-md border-2 border-primary px-5 py-2 text-primary transition-all duration-150 hover:bg-primary hover:text-white"
+            className="rounded-md border-2 border-primary px-4 py-[6px] text-sm text-primary transition-all duration-150 hover:bg-primary hover:text-white sm:px-5 sm:py-2"
             onClick={() => setAddNote(false)}
           >
             Cancel

@@ -9,29 +9,49 @@ import Loader from "../components/loader/Loader";
 import { IoSparkles } from "react-icons/io5";
 import { FiFileText } from "react-icons/fi";
 import EditNote from "../components/notes/EditNote";
+import { useNavigate } from "react-router-dom";
 
 const Notes = () => {
+  // User Token
+  const token = localStorage.getItem("token");
+
+  // Fillter Drowp Down
   const [isOpen, setIsOpen] = useState(false);
-  const [addNote, setAddNote] = useState(false);
-  const [viewNote, setViewNote] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Filter");
-  const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [noteView, setNoteView] = useState(null);
-  const [allNotes, setAllNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([]);
+
+  // Add Note
+  const [addNote, setAddNote] = useState(false);
+
+  // View Note
+  const [viewNote, setViewNote] = useState(false);
+  const [noteView, setNoteView] = useState(null);
+
+  // Search Note
+  const [searchText, setSearchText] = useState("");
+
+  // Notes Data
+  const [allNotes, setAllNotes] = useState([]);
   const [editPopup, setEditPopup] = useState(false);
   const [editData, setEditData] = useState(null);
 
+  // Loading Screen
+  const [loading, setLoading] = useState(false);
+
+  // Location Navigate
+  const navigate = useNavigate();
+
+  // User Headers
   const headers = {
-    authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTEwZDdiYmNiM2I2NWM2MmYzM2QzNiIsImVtYWlsIjoic2hhaGJhemFuc2FyaTgxOTlAZ21haWwuY29tIiwidXNlcm5hbWUiOiJTaGFoYmF6X0NvZGVyIiwiaWF0IjoxNzQyOTgxMTY2LCJleHAiOjE3NDM1ODU5NjZ9.K74NBmMFM64SrXOEgPwdHVUFWwMcm4lAXA3mWfPXAJ8",
+    authorization: `Bearer ${token}`,
   };
 
+  // Toggle Fillter DropDown
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  // Fillter Note By Date
   const handleSelect = (order) => {
     setSelectedOption(order);
     setFilteredNotes(
@@ -44,6 +64,7 @@ const Notes = () => {
     toggleDropdown();
   };
 
+  // Seach Note By Title
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     setSearchText(value);
@@ -55,10 +76,18 @@ const Notes = () => {
     setFilteredNotes(filtered);
   };
 
+  // Cheak Note By Title
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+    console.log(headers);
+  }, []);
+
   const getData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:3000/api/notes/get-notes", {
+      const res = await axios.get("https://fly-high-backend.vercel.app/api/notes/get-notes", {
         headers,
       });
       setAllNotes(res.data.data);
@@ -80,10 +109,10 @@ const Notes = () => {
       <div>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="font-worksans text-5xl font-medium text-primary">
+            <h1 className="f font-worksans text-2xl font-medium text-primary sm:text-5xl">
               Notes
             </h1>
-            <p className="text-zinc-400">
+            <p className="text-sm text-zinc-400 sm:text-base">
               With all of the styling tool options available in today's market
             </p>
           </div>
@@ -94,7 +123,7 @@ const Notes = () => {
               className="group cursor-pointer outline-none duration-300 hover:rotate-90"
             >
               <svg
-                className="fill-none stroke-primary duration-300 group-hover:fill-teal-800 group-active:fill-teal-600 group-active:stroke-teal-200 group-active:duration-0"
+                className="h-[30px] w-[30px] fill-none stroke-primary duration-300 group-hover:fill-teal-800 group-active:fill-teal-600 group-active:stroke-teal-200 group-active:duration-0 sm:h-[50px] sm:w-[50px]"
                 viewBox="0 0 24 24"
                 height="50px"
                 width="50px"
@@ -110,7 +139,7 @@ const Notes = () => {
             </button>
           </div>
         </div>
-        <div className="mt-10 flex justify-between gap-10">
+        <div className="mt-10 flex flex-col justify-between gap-4 sm:flex-row sm:gap-10">
           <div className="w-full">
             {/* Search Input */}
             <input
@@ -121,15 +150,19 @@ const Notes = () => {
               onChange={handleSearch}
             />
           </div>
-          <div className="flex gap-5">
+          <div className="flex h-10 justify-between gap-5 sm:justify-center">
             <button className="h-full rounded-lg border border-zinc-600 bg-primary px-3">
-              <img src="/icons/calendar.png" className="w-[75px]" alt="icon" />
+              <img
+                src="/icons/calendar.png"
+                className="w-[20px] sm:w-[85px]"
+                alt="icon"
+              />
             </button>
             <div>
               <div className="relative inline-block h-full text-left">
                 <button
                   type="button"
-                  className="shadow-xs z-50 inline-flex h-full w-36 items-center justify-between gap-x-1.5 rounded-lg bg-white px-3 py-2 font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  className="shadow-xs z-50 inline-flex h-full w-24 items-center justify-between gap-x-1.5 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:w-36 sm:text-base"
                   onClick={toggleDropdown}
                 >
                   {selectedOption}
@@ -148,18 +181,18 @@ const Notes = () => {
                 </button>
                 {isOpen && (
                   <div
-                    className="absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5"
+                    className="absolute right-0 z-50 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 sm:w-36"
                     role="menu"
                   >
                     <div className="py-1">
                       <button
-                        className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
+                        className="block w-full px-4 py-2 text-left !text-sm text-gray-700 hover:bg-gray-100 sm:text-base"
                         onClick={() => handleSelect("Newest")}
                       >
                         Newest
                       </button>
                       <button
-                        className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
+                        className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 sm:text-base"
                         onClick={() => handleSelect("Oldest")}
                       >
                         Oldest
@@ -176,7 +209,7 @@ const Notes = () => {
             <Loader />
           </div>
         ) : allNotes.length > 0 ? (
-          <div className="mt-10 grid grid-cols-3 gap-4">
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {Array.isArray(filteredNotes) && filteredNotes.length > 0 ? (
               filteredNotes.map((note, index) => (
                 <NotesCard
@@ -188,7 +221,7 @@ const Notes = () => {
                 />
               ))
             ) : (
-              <div className="flex w-64 flex-col items-center rounded-xl border border-[#404040] bg-black bg-gradient-to-b px-4 py-10 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex w-full flex-col items-center rounded-xl border border-[#404040] bg-black bg-gradient-to-b px-4 py-10 shadow-sm transition-all duration-300 hover:shadow-md sm:w-64">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-800 dark:text-gray-100">
                   Note not found
                 </h1>
@@ -207,7 +240,7 @@ const Notes = () => {
             )}
           </div>
         ) : (
-          <div className="mt-6 flex w-64 flex-col items-center rounded-xl border border-[#404040] bg-black bg-gradient-to-b px-4 py-10 shadow-sm hover:shadow-md">
+          <div className="mt-6 flex w-full flex-col items-center rounded-xl border border-[#404040] bg-black bg-gradient-to-b px-4 py-10 shadow-sm hover:shadow-md sm:w-64">
             <div className="group relative mb-6">
               <div className="to-primary-foreground/20 absolute -inset-1 rounded-full bg-gradient-to-r from-primary/20 opacity-80 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
               <FiFileText className="relative h-14 w-14 text-primary/80 transition-colors duration-200 group-hover:text-primary" />
